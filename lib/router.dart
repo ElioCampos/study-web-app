@@ -8,11 +8,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   // var userId = settings.arguments as int;
   switch (settings.name) {
     case 'main':
-      return MaterialPageRoute(builder: (context) => const MainPage());
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const MainPage());
     case 'login':
-      return MaterialPageRoute(builder: (context) => const LoginPage());
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const LoginPage());
     case 'navigator':
-      return MaterialPageRoute(builder: (context) => const MainNavigator());
+      return PageRouteBuilder(pageBuilder: (_, __, ___) => const MainNavigator());
     default:
       return MaterialPageRoute(builder: (context) => const MainPage());
   }
