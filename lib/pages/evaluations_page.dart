@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_web_app/utils/lorem_ipsum.dart';
 
-// ignore: non_constant_identifier_names
-Widget EvaluationsPage() {
+String _career = "Carreras";
+Widget evaluationsPage() {
   return SingleChildScrollView(
     child: Column(
       children: [
@@ -111,7 +111,7 @@ Widget EvaluationsPage() {
                   children: [
                     Text("Filtro"),
                     Text("Categorías"),
-                    Text("Carreras"),
+                    _careerDropdown(),
                     Text("Entornos de práctica")
                   ],
                 ),
@@ -236,4 +236,38 @@ Widget _enterButton() {
       ),
     ),
   );
+}
+
+Widget _careerDropdown() {
+  return StatefulBuilder(builder: (context, setState) {
+    return DropdownButton<String>(
+      value: _career,
+      icon: const Icon(Icons.arrow_downward),
+      iconSize: 24,
+      elevation: 16,
+      underline: Container(
+        height: 2,
+        color: Colors.green,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          _career = newValue!;
+        });
+      },
+      items: <String>[
+        "Carreras",
+        "Ing. Meca",
+        "Ing. Software",
+        "Ing. Sistemas",
+        "Ing. Civil",
+        "Medicina",
+        "Arquitectura",
+      ].map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  });
 }

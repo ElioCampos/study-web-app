@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:study_web_app/pages/evaluations_page.dart';
+import 'package:study_web_app/utils/global.dart';
 
 class MainNavigator extends StatefulWidget {
   const MainNavigator({Key? key}) : super(key: key);
@@ -13,10 +14,11 @@ class MainNavigator extends StatefulWidget {
 
 class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 1;
+  bool isLoggedIn = false;
   List<Widget> routes = [
-    EvaluationsPage(),
-    EvaluationsPage(),
-    EvaluationsPage()
+    evaluationsPage(),
+    evaluationsPage(),
+    evaluationsPage()
   ];
   List routeNames = [
     "Inicio",
@@ -106,37 +108,41 @@ class _MainNavigatorState extends State<MainNavigator> {
           ),
           Container(
             padding: EdgeInsets.only(top: 10, right: 10, bottom: 10),
-            child: Row(
-              children: [
-                ElevatedButton(
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+            child: Get.find<GlobalController>().loggedIn.value
+                ? Text("¡Bienvendidx, usuarix!",
+                    style: GoogleFonts.dosis(color: Colors.black, fontSize: 17),
+                    textAlign: TextAlign.left)
+                : Row(
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ),
+                        child: const Text("Iniciar sesión"),
+                        onPressed: () {},
                       ),
-                    ),
-                  ),
-                  child: const Text("Iniciar sesión"),
-                  onPressed: () {},
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color?>(Colors.blue[900]),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
+                      SizedBox(
+                        width: 10,
                       ),
-                    ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color?>(
+                              Colors.blue[900]),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ),
+                        child: const Text("Registrarse"),
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
-                  child: const Text("Registrarse"),
-                  onPressed: () {},
-                ),
-              ],
-            ),
           )
         ],
       ),

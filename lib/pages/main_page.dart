@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:animated_background/animated_background.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:study_web_app/utils/global.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  openDrawer(BuildContext context) {}
+  bool isLoggedIn = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,53 +39,64 @@ class _MainPageState extends State<MainPage>
   }
 
   Widget _authButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          padding: EdgeInsets.all(10),
-          child: Text(
-            "SVES",
-            style: GoogleFonts.chelaOne(
-              textStyle: TextStyle(fontSize: 20),
+    return Container(
+      color: Colors.grey[800]!.withOpacity(0.9),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            height: 50,
+            width: 150,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/logo.png'),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10, right: 10, bottom: 10),
-          child: Row(
-            children: [
-              ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
+          Container(
+            padding: EdgeInsets.only(top: 10, right: 10, bottom: 10),
+            child: Get.find<GlobalController>().loggedIn.value
+                ? Text("¡Bienvendidx, usuarix!",
+                    style: GoogleFonts.dosis(color: Colors.white, fontSize: 17),
+                    textAlign: TextAlign.left)
+                : Row(
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ),
+                        child: const Text("Iniciar sesión"),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pushNamed(context, 'login');
+                        },
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color?>(
+                              Colors.blue[900]),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ),
+                        child: const Text("Registrarse"),
+                        onPressed: () {},
+                      ),
+                    ],
                   ),
-                ),
-                child: const Text("Iniciar sesión"),
-                onPressed: () {},
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color?>(Colors.blue[900]),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                ),
-                child: const Text("Registrarse"),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
@@ -92,79 +105,97 @@ class _MainPageState extends State<MainPage>
       padding: EdgeInsets.all(30),
       color: Colors.grey[300]!.withOpacity(0.5),
       child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
           children: [
-            Column(
+            Center(
+              child: Container(
+                height: 200,
+                width: 500,
+                color: Colors.white,
+                child: Center(
+                  child: Text("PLACEHOLDER PARA IMAGEN"),
+                ),
+              ),
+            ),
+            SizedBox(height: 50),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  "¿ERES ALUMNO?",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(200, 50)),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
+                Column(
+                  children: [
+                    Text(
+                      "¿ERES ALUMNO?",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
-                  ),
-                  child: Text(
-                    "Dar un examen",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                  onPressed: () {},
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(200, 50)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.black),
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Dar un examen",
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'navigator');
+                      },
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "¿ERES PROFESOR?",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateProperty.resolveWith(
+                          (states) {
+                            return states.contains(MaterialState.pressed)
+                                ? Colors.grey[100]
+                                : null;
+                          },
+                        ),
+                        minimumSize: MaterialStateProperty.all(Size(250, 50)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "Crear una evaluación",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      onPressed: () {
+                        // Navigator.pop(context);
+                      },
+                    )
+                  ],
                 )
               ],
             ),
-            Column(
-              children: [
-                Text(
-                  "¿ERES PROFESOR?",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.resolveWith(
-                      (states) {
-                        return states.contains(MaterialState.pressed)
-                            ? Colors.grey[100]
-                            : null;
-                      },
-                    ),
-                    minimumSize: MaterialStateProperty.all(Size(250, 50)),
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    "Crear una evaluación",
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                  onPressed: () {
-                    // Navigator.pop(context);
-                    Navigator.pushNamed(context, 'navigator');
-                  },
-                )
-              ],
-            )
           ],
         ),
       ),
