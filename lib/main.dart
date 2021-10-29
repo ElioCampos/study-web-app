@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:study_web_app/router.dart' as router;
+import 'package:study_web_app/utils/global.dart';
 void main() {
+  Get.put(GlobalController());
   runApp(const MyApp());
 }
 
