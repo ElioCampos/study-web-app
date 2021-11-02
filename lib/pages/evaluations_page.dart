@@ -17,15 +17,10 @@ Widget evaluationsPage() {
             children: [
               Column(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                    ),
-                    width: 400,
-                    height: 200,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset('assets/practico.png',
+                        width: 400, height: 200, fit: BoxFit.fill),
                   ),
                   SizedBox(
                     height: 20,
@@ -124,23 +119,28 @@ Widget evaluationsPage() {
                   SizedBox(
                     width: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.green[200],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
+                  Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset('assets/teorico.png',
+                            width: 300, height: 200, fit: BoxFit.fill),
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 200,
-                        ),
-                        _enterButton()
-                      ],
-                    ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 200,
+                          ),
+                          Center(
+                            child: _enterButton(),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                   SizedBox(
                     width: 20,
@@ -190,23 +190,28 @@ Widget evaluationsPage() {
                   SizedBox(
                     width: 20,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 10),
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.green[200],
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
+                  Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset('assets/teorico.png',
+                            width: 300, height: 200, fit: BoxFit.fill),
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 200,
-                        ),
-                        _enterButton()
-                      ],
-                    ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 200,
+                          ),
+                          Center(
+                            child: _enterButton(),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ],
               ),
