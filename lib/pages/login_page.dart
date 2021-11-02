@@ -4,7 +4,6 @@ import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:study_web_app/pages/main_page.dart';
 import 'package:study_web_app/utils/global.dart';
 
 class LoginPage extends StatefulWidget {
