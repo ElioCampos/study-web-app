@@ -5,6 +5,7 @@ import 'package:animated_background/animated_background.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:study_web_app/utils/global.dart';
+import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -30,8 +31,24 @@ class _MainPageState extends State<MainPage>
         ),
         vsync: this,
         child: Center(
-          child: Column(
-            children: [_authButtons(), _mainOptions(), _searchBox()],
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _mainOptions(),
+                          _searchBox(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              _authButtons(),
+            ],
           ),
         ),
       ),
@@ -107,17 +124,13 @@ class _MainPageState extends State<MainPage>
       child: Center(
         child: Column(
           children: [
-            Center(
-              child: Container(
-                height: 200,
-                width: 500,
-                color: Colors.white,
-                child: Center(
-                  child: Text("PLACEHOLDER PARA IMAGEN"),
-                ),
-              ),
+            SizedBox(
+              height: 30,
             ),
-            SizedBox(height: 50),
+            Center(
+              child: _imageSlider()
+            ),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -248,6 +261,59 @@ class _MainPageState extends State<MainPage>
               )
             ],
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imageSlider() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          SizedBox(height: 30),
+          ImageSlideshow(
+            width: 500,
+            height: 300,
+            initialPage: 0,
+            indicatorColor: Colors.blue,
+            indicatorBackgroundColor: Colors.grey,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, 'simulator');
+                },
+                child: Image.asset(
+                  'assets/simu-1.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, 'simulator');
+                },
+                child: Image.asset(
+                  'assets/simu-2.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, 'simulator');
+                },
+                child: Image.asset(
+                  'assets/simu-3.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ],
+            onPageChanged: (value) {
+              print('Page changed: $value');
+            },
+            autoPlayInterval: 10000,
+            isLoop: true,
+          ),
+          SizedBox(height: 30),
         ],
       ),
     );
