@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_cube/flutter_cube.dart';
+import 'package:study_web_app/utils/placeholder.dart';
 
 class SimulatorPage extends StatefulWidget {
   const SimulatorPage({Key? key}) : super(key: key);
@@ -135,7 +136,7 @@ class _SimulatorPageState extends State<SimulatorPage> {
                         ...List.generate(11, (index) {
                           return Container(
                             padding: EdgeInsets.all(10),
-                            child: _placeholder(),
+                            child: optionsPlaceholder(),
                           );
                         }),
                       ],
@@ -216,79 +217,6 @@ class _SimulatorPageState extends State<SimulatorPage> {
         Text(
           "Opciones $i",
           style: TextStyle(fontSize: 10, color: Colors.grey[600]),
-        ),
-      ],
-    );
-  }
-
-  Widget _placeholder() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 10,
-          height: 10,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Container(
-          width: 30,
-          height: 10,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Container(
-          width: 20,
-          height: 10,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Container(
-          width: 30,
-          height: 10,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Container(
-          width: 10,
-          height: 10,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 10,
         ),
       ],
     );
