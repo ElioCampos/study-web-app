@@ -41,6 +41,7 @@ class _MainPageState extends State<MainPage>
                         children: [
                           _mainOptions(),
                           _searchBox(),
+                          SizedBox(height: 100,),
                         ],
                       ),
                     ),
@@ -202,7 +203,7 @@ class _MainPageState extends State<MainPage>
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                       onPressed: () {
-                        // Navigator.pop(context);
+                        Navigator.pushNamed(context, 'makeExam');
                       },
                     )
                   ],
