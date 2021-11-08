@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:study_web_app/utils/placeholder.dart';
 import 'package:study_web_app/utils/lorem_ipsum.dart';
 
 String _career = "Carreras";
@@ -25,31 +26,7 @@ Widget evaluationsPage() {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 20,
-                        color: Colors.white,
-                      ),
-                      Container(
-                        width: 50,
-                        height: 20,
-                        color: Colors.grey,
-                      ),
-                      Container(
-                        width: 50,
-                        height: 20,
-                        color: Colors.white,
-                      ),
-                      Container(
-                        width: 50,
-                        height: 20,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  )
+                  optionsPlaceholder()
                 ],
               ),
               Flexible(
@@ -115,6 +92,7 @@ Widget evaluationsPage() {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: 20,
@@ -167,6 +145,7 @@ Widget evaluationsPage() {
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
                     width: 20,
