@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Study App",
+      title: "STEP Web App",
       initialRoute: 'main',
       onGenerateRoute: router.generateRoute,
     );
