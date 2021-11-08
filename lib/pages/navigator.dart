@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:study_web_app/pages/evaluations_page.dart';
+import 'package:study_web_app/pages/student/evaluations_page.dart';
+import 'package:study_web_app/pages/student/grades_page.dart';
+import 'package:study_web_app/utils/placeholder.dart';
 import 'package:study_web_app/utils/global.dart';
 
 class MainNavigator extends StatefulWidget {
@@ -16,17 +18,38 @@ class _MainNavigatorState extends State<MainNavigator> {
   int _selectedIndex = 1;
   bool isLoggedIn = false;
   List<Widget> routes = [
+    viewPlaceholder(),
     evaluationsPage(),
-    evaluationsPage(),
-    evaluationsPage()
+    gradesPage(),
+    ...List.generate(8, (index) {
+      return viewPlaceholder();
+    })
   ];
   List routeNames = [
     "Inicio",
     "Evaluaciones",
-    "Retroalimentación",
-    "Exámenes teóricos",
+    "Calificaciones",
+    "Grupos",
+    "Comentarios",
+    "Cursos",
+    "Estadísticas",
+    "Reportes",
+    "Tareas",
     "Materiales de estudio",
     "Ayuda"
+  ];
+  List headers = [
+    "PÁGINA PRINCIPAL",
+    "REALIZAR EVALUACIÓN",
+    "VER CALIFICACIONES",
+    "GRUPOS",
+    "COMENTARIOS",
+    "CURSOS",
+    "ESTADÍSTICAS",
+    "REPORTES",
+    "TAREAS",
+    "MATERIALES DE ESTUDIO",
+    "AYUDA"
   ];
 
   @override
@@ -34,16 +57,16 @@ class _MainNavigatorState extends State<MainNavigator> {
     return Scaffold(
       body: Center(
         child: Column(children: [
-          _authButtons("REALIZAR EVALUACIÓN"),
+          _authButtons(headers[_selectedIndex]),
           Expanded(
             child: Row(
               children: [
-                Column(
+                SingleChildScrollView(child:  Column(
                   children: List.generate(routeNames.length, (index) {
                     return Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(5),
                           child: Container(
                             width: 200,
                             decoration: BoxDecoration(
@@ -80,9 +103,9 @@ class _MainNavigatorState extends State<MainNavigator> {
                       ],
                     );
                   }),
-                ),
+                ),),
                 VerticalDivider(thickness: 1, width: 1),
-                Expanded(child: routes[0])
+                Expanded(child: routes[_selectedIndex])
               ],
             ),
           ),
